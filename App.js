@@ -5,12 +5,15 @@ import { createStore , combineReducers} from 'redux';
 import { Provider } from "react-redux";
 import { useFonts as useOswald, Oswald_400Regular } from '@expo-google-fonts/oswald';
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
-// import {AppLoading} from 'expo-app-loading'
+import cartReducer from './store/reducers/cart'
 import * as Font from 'expo-font';
 import ProductsReducer from "./store/reducers/prodcuts";
+import ordersReducer from "./store/reducers/order"
 import Shopnavigator from './navigation/Shopnavigator';
 const rootReducer = combineReducers({
-  products: ProductsReducer
+  products: ProductsReducer,
+  cart : cartReducer,
+  orders : ordersReducer
 });
 
 const store = createStore(rootReducer);
@@ -31,14 +34,7 @@ export default function App() {
     return null;
   }
   
- 
-  // const [fontLoaded , setFontLoaded] = useState(false);
-    
-  //   if(!fontLoaded) {
-  //     return ( <AppLoading startAsync={fetchFonts} onFinsih={() => {
-  //       setFontLoaded(true);
-  //     }}/>
-  // )
+
     
    return (
     <Provider store={store}>
@@ -48,14 +44,6 @@ export default function App() {
    }
 
 
-
-// const fetchFonts = () => {
-
-//   return Font.loadAsync({
-//     'open-sans' : require('./assets/fonts/OpenSans-Regular.ttf'),
-//     'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
-//   });
-// }
 
 const styles = StyleSheet.create({
   container: {
